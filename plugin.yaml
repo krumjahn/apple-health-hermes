@@ -1,0 +1,25 @@
+name: apple-health-analyzer
+version: 0.1.0
+description: Read selected daily metrics from Health Data AI Analyzer on the same Mac, after opt-in.
+author: Keith Rumjahn
+license: MIT
+homepage: https://github.com/krumjahn/apple-health-hermes
+manifest_version: 2
+api_version: 1
+requires_hermes: ">=0.23.1"
+provides_tools:
+  - apple_health_analyzer_status
+  - apple_health_analyzer_daily_metrics
+provides_hooks: []
+requires_env: []
+config_schema:
+  allow_health_access:
+    type: bool
+    default: false
+    label: Allow health summaries in Hermes
+    description: Opt in to local API reads. Selected results enter Hermes conversations and may be sent to your model provider and retained in chat history. Enable only in a private trusted profile.
+  api_token:
+    type: secret
+    env: APPLE_HEALTH_ANALYZER_TOKEN
+    label: Mac app local API token
+    description: Enter the token from your Mac app's integration settings here, never in chat. Used only for health summary requests to 127.0.0.1:8765.
